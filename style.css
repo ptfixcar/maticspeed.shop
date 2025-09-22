@@ -780,7 +780,32 @@ section h2 {
   transform: rotate(45deg);
 }
 
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap; /* biar bisa turun kalau layar sempit */
+}
 
+.video-wrapper blockquote.instagram-media {
+  width: 45% !important;   /* Desktop: 2 sejajar */
+  min-width: unset !important;
+  max-width: unset !important;
+  margin: 0 auto !important;
+}
+
+/* Mobile: biar gak kepotong */
+@media (max-width: 768px) {
+  .video-wrapper {
+    flex-direction: column; /* otomatis stack */
+    align-items: center;
+  }
+
+  .video-wrapper blockquote.instagram-media {
+    width: 100% !important; /* full lebar di mobile */
+  }
+}
 
 /* ===============================
    REVIEWS SECTION

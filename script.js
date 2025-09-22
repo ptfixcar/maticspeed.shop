@@ -192,7 +192,6 @@ function scrollReview(direction) {
     behavior: "smooth"
   });
 }
-
 // ================================
 // WA Form Submit
 // ================================
@@ -272,21 +271,12 @@ function initNavigation() {
     }
 }
 
-// Ambil tombol
-const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-// Saat scroll 200px ke bawah, tampilkan tombol
-window.addEventListener("scroll", () => {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    scrollTopBtn.classList.add("show");
-  } else {
-    scrollTopBtn.classList.remove("show");
-  }
-});
-
-// Klik tombol untuk scroll ke atas
-scrollTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
 
 
+
+(function() {
+  const script = document.createElement("script");
+  script.src = "//www.instagram.com/embed.js";
+  script.async = true;
+  document.body.appendChild(script);
+})();

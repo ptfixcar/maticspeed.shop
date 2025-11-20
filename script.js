@@ -20,7 +20,6 @@ mobileToggle.addEventListener("click", () => {
   navLinks.classList.toggle("mobile-active");
 });
 
-
 // =============================
 // Sticky Navbar + Shadow
 // =============================
@@ -65,9 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
         benefitBoxes.forEach((box, index) => {
           setTimeout(() => {
             box.classList.add("appear");
-          }, index * 200); // delay antar box
+          }, index * 200);
         });
-        observer.unobserve(entry.target); // stop observe biar sekali animasi
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.2 });
@@ -80,21 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       benefitSection.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Reset animasi dulu
       benefitBoxes.forEach(box => box.classList.remove("appear"));
 
-      // Jalankan animasi fade-in berurutan setelah scroll
       setTimeout(() => {
         benefitBoxes.forEach((box, index) => {
           setTimeout(() => {
             box.classList.add("appear");
           }, index * 200);
         });
-      }, 600); // tunggu scroll
+      }, 600);
     });
   }
 });
-
 
 const boxes = document.querySelectorAll(".benefit-box");
 
@@ -102,33 +98,24 @@ boxes.forEach(box => {
   box.addEventListener("click", () => {
     const isActive = box.classList.contains("active");
 
-    // Tutup semua box
     boxes.forEach(b => {
       b.classList.remove("active");
       b.querySelector(".toggle-icon").textContent = "+";
     });
 
-    // Kalau box yang diklik tadi belum aktif, buka dia
     if (!isActive) {
       box.classList.add("active");
       box.querySelector(".toggle-icon").textContent = "−";
     }
   });
 });
+
 /* =========================================================
    SERVICE PAGE JAVASCRIPT
-   ========================================================= */
-
-/* ----------------------------
-   1. Fade-in Animasi on Scroll
------------------------------ */
+========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  /* ----------------------------
-     1. Fade-in Animasi on Scroll
-  ----------------------------- */
   const elements = document.querySelectorAll(".fade-in, .fade-in-delay, .service-card");
 
-  // pastikan semua service-card dapat class fade-in
   document.querySelectorAll(".service-card").forEach(card => {
     card.classList.add("fade-in");
   });
@@ -137,17 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("appear");
-        obs.unobserve(entry.target); // stop observe setelah muncul
+        obs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.2 });
 
   elements.forEach(el => observer.observe(el));
 
-  /* ----------------------------
-     2. Toggle Detail Service
-     (Hanya 1 card aktif dalam satu waktu)
-  ----------------------------- */
   const serviceCards = document.querySelectorAll(".service-card");
 
   serviceCards.forEach(card => {
@@ -156,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
 
-      // Tutup semua card sebelum buka yang dipilih
       serviceCards.forEach(c => {
         if (c !== card) {
           c.classList.remove("active");
@@ -165,13 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Toggle card yang diklik
       card.classList.toggle("active");
       btn.textContent = card.classList.contains("active") ? "−" : "+";
     });
   });
 });
-
 
 // ===============================
 // REVIEW SLIDER FUNCTION
@@ -192,6 +172,7 @@ function scrollReview(direction) {
     behavior: "smooth"
   });
 }
+
 // ================================
 // WA Form Submit
 // ================================
@@ -204,7 +185,7 @@ if (waForm) {
     let message = document.getElementById("message").value.trim();
 
     if (name && message) {
-      let waNumber = "6285640621068"; // nomor WA tujuan
+      let waNumber = "6285640621068";
       let waMessage = `Halo, saya ${name}. %0A${message}`;
       let waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
 
@@ -215,7 +196,6 @@ if (waForm) {
   });
 }
 
-
 // ===========================================
 // NAVIGATION FUNCTIONALITY
 // ===========================================
@@ -223,20 +203,17 @@ function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-links a');
     
-    // Navbar scroll effect
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add scrolled class for styling
+
         if (scrollTop > 100) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-        
-        // Hide/show navbar on scroll
+
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
@@ -245,11 +222,9 @@ function initNavigation() {
         
         lastScrollTop = scrollTop;
         
-        // Update active navigation
         updateActiveNavigation();
     });
-    
-    // Active navigation highlighting
+
     function updateActiveNavigation() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPos = window.scrollY + 100;
@@ -271,12 +246,33 @@ function initNavigation() {
     }
 }
 
-
-
-
+// ==========================================
+// INSTAGRAM EMBED LOADER
+// ==========================================
 (function() {
   const script = document.createElement("script");
   script.src = "//www.instagram.com/embed.js";
   script.async = true;
   document.body.appendChild(script);
 })();
+
+
+// ==================================================
+// SCROLL-UP BUTTON (DITAMBAHKAN DI SINI)
+// ==================================================
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add("show");
+  } else {
+    scrollBtn.classList.remove("show");
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});

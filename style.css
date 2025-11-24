@@ -243,146 +243,124 @@ section h2 {
   background: #0066cc;
 }
 
+/* =========================================================
+   HERO SECTION
+========================================================= */
 .hero {
-  background: url("Revi\ Hero.jpg") no-repeat center center;
-  background-size: cover;       /* selalu isi penuh layar */
-  background-attachment: scroll; /* lebih aman daripada fixed di mobile */
-  color: #000;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  overflow: hidden;
-  min-height: 5000dvh;   /* unit modern: dynamic viewport */
-  min-height: -webkit-fill-available; /* fallback Safari lama */
   width: 100%;
-  padding: 240px 150px;  /* ruang aman untuk teks */
-}
-/* Hero versi mobile */
-@media (max-width: 768px) {
-  .hero {
-    padding: 15px 15px;            /* lebih compact */
-    background-position: center center; /* fokus ke tengah gambar */
-    background-image: url("Frame\ 1\ \(1\).png");
-    min-height: 100vh;              /* biar lebih ringkas di mobile */
-  }
-  
-  .hero h2 {
-    font-size: 1.8rem;             /* teks lebih kecil */
-    margin-bottom: 15px;
-  }
+  height: 100vh;
+  overflow: hidden;
 
-  .hero p {
-    font-size: 1rem;               /* teks lebih kecil */
-    max-width: 90%;                /* biar muat di layar kecil */
-    margin-bottom: 20px;
-  }
-
-  .hero .btn-primary {
-    padding: 12px 25px;            /* tombol lebih kecil */
-    font-size: 1rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.hero::before {
-  content: '';
+/* Background Video */
+.hero-video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="1" fill="white" opacity="0.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle></svg>');
-  animation: float 20s infinite linear;
+  object-fit: cover;
+  filter: brightness(0.45);
   z-index: 1;
 }
 
-@keyframes float {
-  0% { transform: translateY(100vh) rotate(0deg); }
-  100% { transform: translateY(-100vh) rotate(360deg); }
-}
-
+/* Hero Content */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+
+  text-align: center;    /* RATA TENGAH */
+  max-width: 750px;
+
+  padding: 0 40px;
   animation: heroSlideUp 1s ease-out;
 }
 
-@keyframes heroSlideUp {
-  from { opacity: 0; transform: translateY(50px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero h2 {
-  font-size: 2.5rem;
+/* Headings */
+.hero-label {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  animation: textGlow 2s ease-in-out infinite alternate;
+  text-shadow: 0px 0px 8px rgba(0,0,0,0.6);
 }
 
-@keyframes textGlow {
-  from { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.3); }
-  to   { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.5); }
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0066cc;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
 }
 
-.hero p {
+/* Description */
+.hero-desc {
   font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto 30px;
   line-height: 1.6;
-  animation: fadeInDelay 1s ease-out 0.3s both;
+  max-width: 650px;
+  margin: 0 auto 30px;   /* AGAR TEKS DI TENGAH */
+  color: white;
 }
 
-@keyframes fadeInDelay {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero .btn-primary {
-  display: inline-block;
-  margin-top: 3rem;
-  padding: 15px 35px;
-  background: var(--primary);
-  color: #fff;
+/* Button */
+.btn-primary {
+  padding: 14px 32px;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
+  background: var(--primary);
+  color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  animation: buttonBounce 1s ease-out 0.6s both;
   box-shadow: 0 8px 25px rgba(228, 28, 6, 0.3);
+  transition: 0.3s ease;
 }
 
-.hero .btn-primary:hover {
+.btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(228, 28, 6, 0.4);
+  transform: translateY(-3px);
 }
 
-@keyframes buttonBounce {
-  0% { opacity: 0; transform: translateY(20px); }
-  60% { transform: translateY(-5px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 95vh;
+  }
+
+  .hero-content {
+    padding: 0 20px;
+    text-align: center; /* tetap di tengah */
+  }
+
+  .hero-label {
+    font-size: 2rem;
+  }
+
+  .hero-title {
+    font-size: 1.3rem;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    max-width: 95%;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 12px 26px;
+  }
 }
 
-.hero .btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s ease;
-}
 
-.hero .btn-primary:hover::before {
-  left: 100%;
-}
 
 /* Hero Service Page */
 .hero-service {
